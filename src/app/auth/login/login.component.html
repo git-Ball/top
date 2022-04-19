@@ -1,0 +1,52 @@
+
+
+    <form id="login" [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
+     
+
+        <h1 class="auth-heading">Login</h1>
+        <p *ngIf="errorMessage" class="error-msg">
+          {{errorMessage}}
+        </p>
+        
+
+         <!-- Username -->
+        <label for="username">Username:</label>
+        <ng-container *ngIf="loginFormGroup.controls['username'].touched && loginFormGroup.controls['username'].invalid">
+       
+          <div *ngIf="loginFormGroup.controls['username'].errors['required']" class="error-msg">
+            Username is required!
+          </div>
+
+          <div *ngIf="loginFormGroup.controls['username'].errors['minlength']" class="error-msg">
+            Username must be at least 5 characters long!
+          </div>
+        </ng-container>
+
+        <input formControlName="username"  [class.error-input]="loginFormGroup.controls['username'].touched && loginFormGroup.controls['username'].invalid" type="text" id="username" name="username" placeholder="username" />
+   
+       
+        <!-- Password -->
+        <label for="login-pass">Password:</label>
+
+        <ng-container *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+          <div *ngIf="loginFormGroup.controls['password'].errors['required']" class="error-msg">
+            Password is required!
+          </div>
+          <div *ngIf="loginFormGroup.controls['password'].errors['minlength']" class="error-msg">
+            Password must be at least 5 characters long!
+          </div>
+        </ng-container>
+
+        <input formControlName="password" [class.error-input]="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid" type="password" id="login-password" name="password" placeholder="*****" />
+        <button [disabled]="loginFormGroup.invalid" type="submit" id="submit-button" class="btn-submit" value="Login"> Login</button>
+        <!-- <p class="field">
+       
+               <a routerLink="/register">Sign in</a>
+       
+         
+        </p> -->
+    
+    </form>
+
+
+

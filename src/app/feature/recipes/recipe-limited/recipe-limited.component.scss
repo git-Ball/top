@@ -1,0 +1,19 @@
+.recipe-wrapper{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    .display-content{
+        margin-right: 30px;
+    }
+}
+
+@media only screen and (max-width: 1350px){
+  .recipe-wrapper{
+    flex-direction: column;
+  }
+  }
+
+
+  
+
+

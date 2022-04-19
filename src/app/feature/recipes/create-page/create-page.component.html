@@ -1,0 +1,68 @@
+<form #createForm="ngForm" id="create" (ngSubmit)="onSubmit(createForm)">
+
+
+    <h1 class="create-heading">Create Recipe</h1>
+    
+    
+     
+    <label for="recipeName">Recipe title<span class="red-star">*</span></label>
+<!-- TODO Check validations -->
+    <ng-container *ngIf="recipeName.touched && recipeName.invalid">
+      <div *ngIf="recipeName.errors?.['required']" class="error-msg">
+        Recipe title is required!
+      </div>
+      <div *ngIf="recipeName.errors?.['minlength']" class="error-msg">
+        Recipe title must be at least 5 characters long!
+      </div>
+      <div *ngIf="recipeName.errors?.['maxlength']" class="error-msg">
+        Recipe title max length is 16 charcters!
+      </div>
+    </ng-container>
+   
+    <input  #recipeName="ngModel"  ngModel name="recipeName" required minlength="5" maxlength="16" placeholder="Chicken with BBQ Souse" />
+  
+
+    <label for="img">Image</label>
+    <input
+      type="text"
+      id="img"
+      name="img"
+      ngModel
+      placeholder="Upload image url here..."
+    />
+    <!-- Ingredients -->
+    <label for="ingredients">Ingredients<span class="red-star">*</span></label>
+
+    <ng-container *ngIf="ingredients.touched && ingredients.invalid">
+      <div *ngIf="ingredients.errors?.['required']" class="error-msg">
+        Ingredients are required!
+      </div>
+      <div *ngIf="ingredients.errors?.['minlength']" class="error-msg">
+       Ingredients must be at least 20 characters long!
+      </div>
+    </ng-container>
+  
+        <textarea #ingredients="ngModel"  name="ingredients" ngModel required minlength="20" id="ingredients" placeholder="salt 10g, black peper 15g..."></textarea>
+   
+        <!-- Preparation -->
+    <label for="preparation:">Preparation<span class="red-star">*</span></label>
+   
+    <ng-container *ngIf="preparation.touched && preparation.invalid">
+   
+      <div *ngIf="preparation.errors?.['required']" class="error-msg">
+        Preparation is required!
+      </div>
+      <div *ngIf="preparation.errors?.['minlength']" class="error-msg">
+        Preparation must be at least 20 characters long!
+      </div>
+    </ng-container>
+
+    <textarea #preparation="ngModel" name="preparation" ngModel required minlength="20" id="preparation" placeholder="1.Wash and cut mashrooms.."></textarea>
+
+    <button [disabled]="createForm.invalid"    type="submit" id="submit-button" class="btn-submit" value="Create">Create new recipe</button>
+    <p class="field">
+
+    </p>
+
+</form>
+

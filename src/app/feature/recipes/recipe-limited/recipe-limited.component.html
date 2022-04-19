@@ -1,0 +1,16 @@
+<div class="recipe-wrapper" *ngIf="recipeListLimited; else Loading">
+   
+    <app-recipe-list-item *ngFor="let recipe of recipeListLimited" [recipe]="recipe"></app-recipe-list-item>
+    
+    <div *ngIf="recipeListLimited.length == 0">No recipes in data base!</div>
+  </div>
+
+  <app-recipe-list-item></app-recipe-list-item>
+  
+
+    
+
+  <ng-template #Loading>
+    <mat-spinner class="spinner"></mat-spinner>
+
+</ng-template>

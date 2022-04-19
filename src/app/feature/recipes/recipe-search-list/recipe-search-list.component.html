@@ -1,0 +1,25 @@
+<div class="recipe-wrapper" *ngIf="getSearch; else Loading">
+
+  <app-recipe-list-item class="flex" *ngFor="let recipe of getSearch" [recipe]="recipe"></app-recipe-list-item>
+
+    <div *ngIf="getSearch.length == 0" class="not-found-wrapper">
+      <div class="not-found">
+       
+      </div>
+    
+      <p  class="not-found-text"> Ooops! No recipes found! </p>
+      <p class="not-found-text">Click <a class="reset" (click)="onReset()">here</a> to reset your search!</p>
+    </div>
+  </div>
+
+  <app-recipe-list-item></app-recipe-list-item>
+ 
+
+   
+
+  <ng-template #Loading>
+    <mat-spinner class="spinner"></mat-spinner>
+</ng-template>
+
+
+

@@ -1,0 +1,112 @@
+
+<form
+  id="register"
+  [formGroup]="registerFormGroup"
+  (ngSubmit)="handleRegister()"
+>
+
+
+  <h1 class="auth-heading">Register</h1>
+
+  <p *ngIf="errorMessage" class="error-msg">
+    {{errorMessage}}
+  </p>
+  <!-- Username -->
+  <label for="username">Username:</label>
+
+  <ng-container
+    *ngIf="
+      registerFormGroup.controls['username'].touched &&
+      registerFormGroup.controls['username'].invalid
+    "
+  >
+    <div
+      *ngIf="registerFormGroup.controls['username'].errors['required']"
+      class="error-msg"
+    >
+      Username is required!
+    </div>
+    <div
+      *ngIf="registerFormGroup.controls['username'].errors['minlength']"
+      class="error-msg"
+    >
+      Username must be at least 5 characters long!
+    </div>
+  </ng-container>
+  <input
+    formControlName="username"
+    [class.error-input]="
+      registerFormGroup.controls['username'].touched &&
+      registerFormGroup.controls['username'].invalid
+    "
+    type="text"
+    id="username"
+    name="username"
+    placeholder="masterChef"
+  />
+
+  <!-- Passwords -->
+  <div formGroupName="passwords">
+    <label for="password">Password:</label>
+
+ 
+    <ng-container *ngIf="passwordsGroup.controls['password'].touched && passwordsGroup.controls['password'].invalid">
+      <div *ngIf="passwordsGroup.controls['password'].errors['required']" class="error-msg">
+        Password is required!
+      </div>
+      <p class="error-msg" *ngIf="passwordsGroup.controls['password'].errors['minlength']" >
+        Password must be at least 5 characters long!
+      </p>
+    </ng-container>
+    <input
+
+    [class.error-input]="passwordsGroup.controls['password'].touched && passwordsGroup.controls['password'].invalid"
+      formControlName="password"
+     
+
+      type="password"
+      id="password"
+      name="password"
+      placeholder="*****"
+    />
+
+     
+
+    <!-- repass -->
+
+    <label for="repass">Repeat Password:</label>
+    <ng-container *ngIf="passwordsGroup.controls['repass'].touched && passwordsGroup.controls['repass'].invalid">
+      <p class="error-msg">
+          Passwords didn`t match!
+        </p>
+      </ng-container>
+  
+    <input
+    [class.error-input]="passwordsGroup.controls['repass'].touched && passwordsGroup.controls['repass'].invalid"
+      formControlName="repass"
+      type="password"
+      id="repass"
+      name="repass"
+      placeholder="*****"
+    />
+
+  </div>
+
+  <button
+    [disabled]="registerFormGroup.invalid"
+    type="submit"
+    id="submit-button"
+    class="btn-submit"
+    value="Register"
+  >
+    Register
+  </button>
+  <!-- <p class="field">
+
+    <a routerLink="/login">create check</a>
+
+
+  </p> -->
+
+</form>
+
