@@ -33,3 +33,4 @@ recipeOwner:string = this.userService.recipeOwner;
   }
 
 }
+// ng build --prod --base-href "https://git-Ball.github.io/top/"
